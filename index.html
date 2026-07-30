@@ -56,12 +56,14 @@ tbody tr:nth-child(odd){background:rgba(255,255,255,.02)}
     <span class="brand">Rising Axis <span class="tide">· The Hollow Tide</span></span>
     <button class="tabbtn on" data-t="team" onclick="pick('team')">Team</button>
     <button class="tabbtn" data-t="players" onclick="pick('players')">Players</button>
+    <button class="tabbtn" data-t="base" onclick="pick('base')">Base</button>
+    <button class="tabbtn" data-t="npcs" onclick="pick('npcs')">NPCs</button>
     <span class="updated" id="updated"></span>
   </header>
   <div id="main"></div>
 </div>
 <script>
-const ENC={salt:"Q6XPqqINM8o2+G5pmRAgNw==",iv:"5Tu+ODXD7NCUZS5f",ct:"2BdfCK+n3VEcwJE8EQSsAToFGStA3LA5ezzwIYzh+PUiiQSPkiomO3Odf4u2ZFbLE+u+YhyOpO7wc/KxvQL3yK1LVXmVhl1iNfGkg/+2Drp1GWKTzI84i0AbphaeY97z6+JxJ5XTPP8w88im20yBUlMHiW4btCCVHveV8eaYZ5fSJZKLuUF2kubnUtPtzZWQypHP4UnN1kJLWVUJiZsv7xIoGFH/muxkXfXhfCuOM0bpTtz2Cfbke5E3X3w4HeTKz4K8g3njNKZTMKULV0EkqtKZI4SnPsVMiaruUiR2eIxJYHNkFUGkq356IIqqpksCahLRFg9QfgXpqqvNjpEIqRbbhfoqnNISmcwlUc9Pf6f/9gHeD4qTPBi9j/F9S0yQrOpRLjjbWEvjmgt3Mj5wor9z00rlBAaNAwGCodrvai0ogVgvHLakmPrl+FYe6P2su8cruWg7CfdsKGrFI+CiFIk1RPR9vLHbBEhZ6DJwED9/3hJBVDxN2jYSoRlN/mx8C/rsANEtPA1KBtPZZsGrOvesuoBZcddmKyVfv91+9w/TTmitJ26jEvB0QLbTsgZIOPhVLbAB75TlGrGtmeuwex0gyTkvCCNiweUBzwvPcezhZkkX6grAX4dffMdY6U8Z0zX/p5AKNct/5z5+4IilQSyWtUpNoLGmGUqIwcllCDuQtUQ6JwjTcixy+nThEY2ygwKuByzLxuPC/IfsbnEVVk5Mn+dlekn5+c9Im6nKqGwLs34MHxvXtjaLZAIefkYNAVIeffsZcb1l4agZnUXw1dLiYe2IcGrjd181cwkAlPDvyKQVxjxhtjewW/aouMp25mAW0LJYe+1F6MfAHoQMAKw+kcMDBfLX/RpIxq5/g08IytQ4VqvEU2kFL/H+/wMf6NAqaa3SlvWHc8o7Cn5w6w7TFsOMAkO3eGSSvnzujamwgAhPPX5mCwvF4kXK5YFPf2jagg0ZaKPJmgqiFrEmZfHme3gxBEZp4bs8ZUtIBxcvEHjSaVfCWcD7Q/pNsNbBvinjg1UEb60fE3qT1pTHDVPmpWbLDeqq0OWUeVuBa/oCz/755tcLgWfhUgDm5uH+9OtcSEVZcdsU5gsmh21waG3KlvyxEZ7L50f+fXihRBUD+S7Yikoevh+uau8D/qdiuk8ilSY/f++d0yiDvY0HOwDMHpfWW+08H/OUXUBAiC8886gIV7yBZVzltAHJEU/1pRh8k1iQW175qE0I7K8JzLQ3nDa2kdkn47PbAbfJW0lXdJ/6a/Q8mDV1NqXTpsVrFMUdW1jCWVvx26eESEbXTZpvhnrdQveNbX/YyfpJDtglaVtpg4y/64QSFA0hF61MnFAdkETcyu2ExpjkXxdz+6XHzVi76WlhFreCVRM=",iter:310000};
+const ENC={salt:"1JdVQ8xDbEwczlIHnXH/3w==",iv:"pzYpPw/feqbphIrX",ct:"QRt1HYdZM1cQnm1tsrxXMYUJ1OY0W46GMVQXXs+FwkgD6yAzqIHfGBTWnmITW45iTNJwZ4IUS/O+x8yA+W0/7L0OGwljwLhE0Up2fNB16KgSGjQv3W/Get7wiT8uQw5Nh6CReUYq4je1XK4umwdgkxE5ObshhoSnhnE0qDRXkys545/TVZutqQtLBdBUftnEAjqy0AZJtCZNwrnPAJ0eggsi8UFv7uHXAoKnd/5v667UG8uaGLhSVIoSHN0fxms581BRblZ3gQSpMvS5Hh9I9fXxN8clW0FyD64jAcUtJ3PsvSqLZRdihSQ0yL936to4FwfKUHiTNP5gY93hMc8bCzSCMyvWfUMc2Eq7Y0bbkguD5CorT0Ksoh6iS7XKE/knQ4c5VXrcBuvwibXD3G/5rwZqKN3zjk/q9eNsKtJyBniF7rc95KfLCknnCZ3Zq+iamhXa/txBPuW4pJvZc63bcX18oQLtbML9Yarhkb3AJLH/rEd+eJ2cyMOafRT9ojc6CxUyPK6g/xd/mw3X5ziHIzRtgjG/P7q5iNF98noNPgXg0z4Q/nu6JvzbTf4Rs5ncIegvJXe6HGlB40l1Joo9PpL6hfD8qj5K7SMoI5FywsqSLhVmZw0oNC+b7vqa8+kxHDYRHKNHUsQwvYRe/mItUdTNdiIreLMav7jlJZpXX7CIQgSD/BDstYJKwTFZQJfBxwYRHOK5MToi0rhoTSYP/6ZeN+8eTMWxsWsRuRDGIkcz5oUteOapY7HUeTOgKd9JR3Jz5NaoPU6/Eyg94p8/Z7V9KWG7NtOrTkrkrSTffyzg+Huo1zGOxBJg9NRCAniahYmp7lYQ07gVujgijhZ+kcIZW+TJkGmAkynGfGEx66iPN1JFwseeG++TXCKPlzwarZTp3ZcOCNVpwarBiqB8xIiGKtrOtaHZ43s/Y8AsXHBFzGvny/1yZs6cuIwyZxvCuxHflRgAA2T7Ocag6L1LdVGS/eoFoslfkW3ue7fn/wqmmpzy1ZLNRNB8FBiUZYDl7TgNJib6iyZWVOz/Oy4Oe0sUY6FVqeL9H+DJ7UK38mMtQaHI5+5P5/j4BoTvuRlMlD+U5GUbg8DKbcYXezrjgeo9XSl0BGkEjQRxkojXYzB+CvKxhfxtwcouHJTx54buzwws8hT9/ykvOuI95tqouaPD/AKjkM87qWQE+oP/SnftsTq2gE9P09VEd3GImSdHdshC1RsTDD83xNjrYQn11wfN2TD/Bl9LLLfKos6GVq+IZ6rjUdBmXX8KH4s8Ig8pQKOfWfZp7ElZbQ4P0tt7B220my2Blzmodd6yZsvvzy2s59DlKgSqnKaeJ+sDaKIiRt0GKHDlAGrFGnvB5x8BK/J5wOtL4UpKr8YfuXf7HIaE8GfDDQ/0CGH9kDVdk9ZX5x8p4x2Prg==",iter:310000};
 let DATA=null;
 const b64buf=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 async function unlock(){
@@ -104,6 +106,30 @@ function render(){
       <tbody>${roster}</tbody></table>
       <h2>Team stash</h2><table><thead><tr><th>Item</th><th>Qty</th><th>About</th></tr></thead>
       <tbody>${stash}</tbody></table>`;
+  }else if(tab==='base'){
+    const b=DATA.base;
+    if(!b){m.innerHTML='<h1>Base</h1><p class="muted">No base on record for this team — yet.</p>';return}
+    const hales=(b.houses||[]).map(h=>`<div class="pcard">
+      <h2>${esc(h.name)}${h.function?' <span class="muted" style="font-size:.85rem">— '+esc(h.function)+'</span>':''}</h2>
+      ${(h.npcs||[]).length?'<div class="pmeta">'+h.npcs.map(n=>'<b>'+esc(n)+'</b>').join(' · ')+'</div>':''}
+      ${h.staff?'<div class="pmeta muted">Also: '+esc(h.staff)+'</div>':''}
+    </div>`).join('');
+    m.innerHTML=`<h1>${esc(b.name)}</h1>
+      ${b.status?`<div class="pmeta">📍 <b>${esc(b.status)}</b></div>`:''}
+      ${b.steward?`<div class="pmeta">Steward: <b>${esc(b.steward)}</b></div>`:''}
+      ${b.desc?`<p>${esc(b.desc)}</p>`:''}
+      <h2>The hale</h2>${hales||'<p class="muted">No houses recorded.</p>'}`;
+  }else if(tab==='npcs'){
+    if(!(DATA.npcs||[]).length){
+      m.innerHTML='<h1>NPCs</h1><p class="muted">No NPCs on record for this team — yet.</p>';return}
+    m.innerHTML='<h1>NPCs</h1>'+DATA.npcs.map(n=>`<div class="pcard">
+      <h2>${esc(n.name)}</h2>
+      <div class="pmeta">${(n.titles||[]).length?esc(n.titles.join(', '))+' · ':''}
+        ${n.affiliation?esc(n.affiliation)+' · ':''}
+        Post: <b>${esc(n.post)}</b>${n.function?' ('+esc(n.function)+')':''}</div>
+      ${n.gif?`<img src="${esc(n.gif)}" alt="" loading="lazy"
+        style="max-height:120px;border-radius:8px;margin-top:6px">`:''}
+    </div>`).join('');
   }else{
     m.innerHTML='<h1>Players</h1>'+DATA.players.map(p=>{
       const sk=Object.entries(p.skills||{}).filter(e=>e[1]>0)

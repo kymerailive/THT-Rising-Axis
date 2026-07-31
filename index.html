@@ -113,6 +113,21 @@ font-weight:800;cursor:pointer;font:inherit;box-shadow:0 4px 14px rgba(124,92,25
 .npclink{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--faint)}
 .npcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
 .npcgrid .pcard{margin:0}
+
+/* ---- the forge ---- */
+.pcard label{display:block;margin:12px 0 4px;font-size:13px;color:#9fb0c9}
+.pcard input[type=text],.pcard select,.pcard textarea{
+  width:100%;box-sizing:border-box;padding:9px 11px;border-radius:9px;
+  background:#0d1420;border:1px solid #24344b;color:#e8eef7;
+  font:inherit;font-size:14px}
+.pcard textarea{resize:vertical;min-height:64px}
+.pcard input:focus,.pcard select:focus,.pcard textarea:focus{
+  outline:none;border-color:#4d7fb8}
+#f-send{margin-top:14px;padding:11px 20px;min-height:44px;border-radius:10px;
+  border:none;background:#2f6f4f;color:#fff;font:inherit;font-size:14px;
+  font-weight:600;cursor:pointer}
+#f-send:disabled{opacity:.6;cursor:default}
+.ok{margin-top:10px;color:#6ee7a8;font-size:13px}
 </style></head><body>
 <div id="gate"><div class="gatecard">
   <h1>Rising Axis</h1>
@@ -128,12 +143,14 @@ font-weight:800;cursor:pointer;font:inherit;box-shadow:0 4px 14px rgba(124,92,25
     <button class="tabbtn" data-t="players" onclick="pick('players')">Players</button>
     <button class="tabbtn" data-t="base" onclick="pick('base')">Base</button>
     <button class="tabbtn" data-t="npcs" onclick="pick('npcs')">NPCs</button>
+    <button class="tabbtn" data-t="forge" id="forgetab" style="display:none"
+            onclick="pick('forge')">Forge</button>
     <span class="updated" id="updated"></span>
   </header>
   <div id="main"></div>
 </div>
 <script>
-const ENC={salt:"L5KkTTMOyqghMgIU20t9Gw==",iv:"P6s1nTdl+uq6kLot",ct:"SlgBCGaDxcQRtclIa7vdb7EBdWOgZk/6lSjT9B6lFhOKjeA10yIBjf/+6EfpItyq+k2hleaPWT7MREESkOjy7MRXaG/7vEbL/COSsa+WdlhZpmwa79SBBWe+Jjhs4szJLK+eoLXvqtu5TSx+CfGO2VCjy1S6B0qGgLuVU+8c/HJ1q0dk9sFI6nKPY/lk2/YKQmoKaBcZAiEFrTd2/+x4DTJMOz96UC3h+UJtfZNB4j4iwTEBX5ROTHwwDiWM8VXzrkRWK7OxuMhQP8NU4tWj9n5IzJngWz1L3045dDqixmIn7bpUiJVrDXjIzxBysfUlH8hb7wrVLbVXLkkiDTWsx4Bc+TWWe4tzgOxKeC77phq4Fwv05gG0IoJuqsrqoWjvrc6Lil/bQFTWooPOcxzFUZYTMMjUr6xiVlZx8Q6aq3PeNCaoFp/NcElgwDMLrM6lfbKWSSpD2C4c7HLWlq2ala4Q7xZLDUmffvYsIOjHSPE9S+xVh2W4zdVmJsVEXoMTYNAIf9MvbYOygQ5rMPX+Toq9yTBCgZDc0TbmrvuYOh96e11pu0tNsfSwQYyxRuR5D0asSQ0ZWvvoL7EATD2OmrjQlWbX2lzapzwR2BUszlTMZynD9crNncfOIrM7hrg2pAX2LgrMI31OvaBu7QaT27ucX+SYoVkAxxjwBOEkrr4z+6LzGNFEA4PyVAkudt5QgciAPdJN1Y0qkX44e2BogqaRe8RuOShJYA8tbWSL4xefNSCOxuKyWE5NrjNst/CO75vmbpOijXKN0AJtqE91DGPDqHpBvxCwXiTbxVRyDd6cWUsXtHtrooFLMqVvZFGZ8dOfV6DTAZ/OPhd5bOeBjUd5Z6XNUH4DoSsvHrinUmXZti7R58aTYTRufgDjdT/LWXzmCx+ticHCBYQYMpLQqblJ9Vk+uJifnGVcOb0C1gD+w21eW8Bbi0TES7w5jnqtmoIEQfqrpSzZ1O6Ioy62H9ZGi4q1M2asa5Iwg2OlYqi6s2LWrxk0GQ8xeOpPNtSlxwv1lEtvOQI2sWPLmc79IYScco46qDVHW6oJK4OmBTWJUvpMMtgqO3khE3qpRS++4+FJ23pvEhm481bgTNw8Ckg+OUN0fi/sTnEELj/wlFVe3351R2ozp75j+Ur/EnBz+zrzKgpBJwTPcy5y/qB0WmU0CSQ+LXoynkegZSSlE2NlH/6iyVlB0dHrhTjocRFWyDf6ndBPMW6N9+xGlf6QmHvkU9eJpK1Us105/V3X81twwqaP2RFEWI+yTrcx41w9vvnSnBYYQYh2Dm0AnaWAffdTeA2L3lqw25y+xVmRCQwrbUGWbLp8mWeF5/w6It/KcQFPJcnopPWcBR6N5+lpS4eqe2equoyBqt7suYuViyQ7xUnUemGSCRLhX1m4F6tlIBUkYoWlz+nF4ku7q2rga8r51nMXnssgkGLe+ol7JyCw+9aOzjGRaz+IG542TvPwQVzX8zZJ750tykiX+LmjQbNXPT4yJ5gk5L2TQPGuyWYSWL9zpCI=",iter:310000};
+const ENC={salt:"cPxuUSS4b/HuRHZHfWmOZw==",iv:"vIjyWuUt1c0d1FUT",ct:"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",iter:310000};
 let DATA=null,LIVE=null,liveOk=false,lastSig='',tab='team';
 let selHale=null,selNpc=null;
 const BLOBS={};
@@ -153,6 +170,9 @@ async function unlock(){
   }catch(e){err.textContent='That passcode does not open this tide.';return}
   document.getElementById('gate').style.display='none';
   document.getElementById('app').style.display='block';
+  // The Forge tab exists only for a team that has dealt with Kawelo. Teams who
+  // haven't never see it — the forge is earned in fiction, not advertised.
+  if((DATA.forge||{}).unlocked)document.getElementById('forgetab').style.display='';
   render();
   startLive();
 }
@@ -334,6 +354,8 @@ function render(){
           tab='base';selNpc=c.key;selHale=null;render();
           document.querySelectorAll('.tabbtn').forEach(x=>x.classList.toggle('on',x.dataset.t==='base'))};
       }});
+  }else if(tab==='forge'){
+    m.innerHTML='<h1>The Forge</h1>'+forgeForm();
   }else{
     m.innerHTML='<h1>Players</h1>'+DATA.players.map(p=>{
       const sk=Object.entries(p.skills||{}).filter(e=>e[1]>0)
@@ -348,6 +370,70 @@ function render(){
         <div class="pmeta">💰 ${money(p.wallet)}${sk?' · 🎓 '+esc(sk):''}</div>
         <table><thead><tr><th>Item</th><th>Qty</th><th>About</th></tr></thead><tbody>${inv}</tbody></table>
         </div>`;}).join('');
+  }
+}
+
+/* ---- the forge ----
+   Buy a card from Kawelo, author the NPC here, a dev rules on it. The form
+   shows only the fields that card pays for, and only the jobs still open. */
+function forgeRarity(){
+  const s=document.getElementById('f-rarity');
+  return s?s.value:'common';
+}
+function forgeForm(){
+  const F=DATA.forge||{}, r=forgeRarity();
+  const fields=(F.fields||{})[r]||[];
+  const jobs=(F.jobs||[]).filter(j=>r==='special'||
+      (F.tiers||[]).indexOf(j.tier)<=(F.tiers||[]).indexOf(r));
+  const rows=fields.map(f=>{
+    if(f==='job'){
+      const opts=jobs.map(j=>`<option value="${esc(j.title)}">${esc(j.title)}`
+        +` — ${esc(j.tier)}${j.left!==null&&j.left!==undefined?' ('+j.left+' left)':''}`
+        +`</option>`).join('');
+      return `<label>${esc((F.prompts||{}).job||'Job')}
+        <select id="f-job">${opts||'<option value="">no posts open</option>'}</select></label>`;
+    }
+    const big=['personality','voice','backstory','goal','ability','trait'].indexOf(f)>=0;
+    const p=esc((F.prompts||{})[f]||f);
+    return big?`<label>${p}<textarea id="f-${f}" rows="3"></textarea></label>`
+              :`<label>${p}<input id="f-${f}" type="text"></label>`;
+  }).join('');
+  const face=(F.portrait||[]).indexOf(r)>=0
+    ? `<p class="muted">This card lets you choose their face — hand the picture
+       to a dev when they approve.</p>`
+    : `<p class="muted">The card picks their face from the pool.</p>`;
+  return `<div class="pcard"><h2>Forge an NPC</h2>
+    <p class="muted">${esc((F.blurb||{})[r]||'')}</p>
+    <label>Which card are you spending?
+      <select id="f-rarity" onchange="render()">
+        ${['common','uncommon','rare','legendary','special'].map(x=>
+          `<option value="${x}"${x===r?' selected':''}>${x}</option>`).join('')}
+      </select></label>
+    <label>Your player name<input id="f-player" type="text"
+      placeholder="so the dev knows whose card to take"></label>
+    ${rows}${face}
+    <button id="f-send" onclick="forgeSend()">Send to the devs</button>
+    <div class="err" id="f-err"></div></div>`;
+}
+async function forgeSend(){
+  const F=DATA.forge||{}, r=forgeRarity();
+  const err=document.getElementById('f-err');
+  const body={rarity:r,player:(document.getElementById('f-player')||{}).value||''};
+  ((F.fields||{})[r]||[]).forEach(f=>{
+    const el=document.getElementById('f-'+f);
+    if(el)body[f]=el.value;
+  });
+  body.portrait=(F.portrait||[]).indexOf(r)>=0;
+  const btn=document.getElementById('f-send');
+  if(btn){btn.disabled=true;btn.textContent='Sending…';}
+  try{
+    await api('/api/team/forge-submit',body);
+    err.className='ok';
+    err.textContent='Sent. A dev will confirm your card and make them real.';
+  }catch(e){
+    err.className='err';
+    err.textContent=e.message;
+    if(btn){btn.disabled=false;btn.textContent='Send to the devs';}
   }
 }
 document.addEventListener('DOMContentLoaded',()=>{
